@@ -1,0 +1,23 @@
+---
+# These tasks install http and the php modules.
+
+- name: Install httpd and php
+  yum: name={{ item }} state=present
+  with_items:
+   - apache2
+   - php
+   - firewalld 
+
+- name: Install web role specific dependencies
+  yum: name={{ item }} state=present
+  with_items:
+   - git
+
+
+- name: http service state
+  service: name=httpd
+
+
+- name: Install httpd and php using with_dict
+  with_dict: "{{ packages }}"
+  yum: name={{ item.value.name }} state=present

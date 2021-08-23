@@ -1,0 +1,6 @@
+---
+packages:
+  p1:
+    name: php
+  p2:
+    name: php-mysql
